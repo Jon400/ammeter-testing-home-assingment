@@ -94,15 +94,35 @@ the system package (for example `sudo apt install python3-tk`).
 
 All settings are in `config/config.yaml`:
 
-| Key | Meaning |
-|-----|---------|
-| `testing.sampling.measurements_count` | Number of samples per test |
-| `testing.sampling.total_duration_seconds` | Maximum test time. The test stops early when it is reached |
-| `testing.sampling.sampling_frequency_hz` | Samples per second |
-| `ammeters.<name>.host` / `port` | Where each emulator listens. Remove an ammeter to skip it |
-| `result_management.results_dir` | Folder for the result JSON files |
-| `logging.log_dir` | Folder for the log files |
-| `logging.log_level` | `DEBUG`, `INFO`, `WARNING` or `ERROR`. `DEBUG` also logs every reading |
+```yaml
+testing:
+  sampling:
+    measurements_count: 10         # number of samples per test
+    total_duration_seconds: 5.0    # maximum test time, the test stops early when it is reached
+    sampling_frequency_hz: 2.0     # samples per second
+
+ammeters:                          # where each emulator listens, remove an ammeter to skip it
+  greenlee:
+    host: localhost
+    port: 5001
+  entes:
+    host: localhost
+    port: 5002
+  circutor:
+    host: localhost
+    port: 5003
+
+simulator:                         # used only by the unit tests, not by main.py
+  host: localhost
+  port: 5004
+
+result_management:
+  results_dir: results             # measurement results, one JSON file per run
+
+logging:
+  log_dir: logs                    # test logs, one log file per test
+  log_level: DEBUG                 # DEBUG, INFO, WARNING or ERROR. DEBUG also logs every reading
+```
 
 ## Project structure
 
@@ -153,9 +173,9 @@ while True:
 
 ## AI Usage
 
-I used an AI coding assistant for planning, code suggestions and some of the code.
-I made the design decisions, reviewed every change, and changed or rejected code that
-was too complex or did not match my style.
+The architecture and the design decisions are mine. I used an AI coding assistant to help
+with planning, code suggestions and some of the code. I reviewed every change, and changed
+or rejected code that was too complex or did not match my style.
 
 ### Tools and models
 
@@ -163,57 +183,3 @@ was too complex or did not match my style.
 |------|-------|----------|
 | Claude Code (VS Code extension) | Claude Opus 5.5 (`claude-opus-5-5`) | Most of the work: architecture, measurements, testing framework, logger, simulator, unit tests, viewer, docs |
 | Claude Code (VS Code extension) | Claude Sonnet 5.5 (`claude-sonnet-5-5`) | Early sessions: `AmmeterType` enum, abstract client class, first architecture questions |
-
-### What was implemented with AI
-
-| Area | How AI was used |
-|------|-----------------|
-| **Folder structure and architecture** | Suggestions only. I asked for the folders and class names, then wrote the code myself |
-| **Clients** (`src/clients/`) | AI wrote the Greenlee, ENTES and CIRCUTOR subclasses and the `AmmeterType` enum. I asked to make the base client abstract (ABC) |
-| **Measurements and results** (`src/mesurements/`, `src/models.py`, `src/config.py`) | AI showed the sampler code in chat first. Later, with my permission, it wrote `MeasurementService`, `ResultsManager`, the Pydantic models and the config loader, built on my `FileUtils` |
-| **Testing framework** (`src/testing/`, `main.py`) | AI wrote `AmmeterTestFramework`, and moved the logs and results folders and the log level into `config.yaml` |
-| **Logger** (`src/utils/classes/test_logger.py`) | AI wrote `TestLogger`. I kept it for the test infra only, not inside the measurement code |
-| **Simulator and unit tests** (`simulator/`, `tests/unit/`) | AI wrote a short simulator with error modes (for example no response), the pytest fixtures in `conftest.py` and `test_error_handling.py` |
-| **Viewer** (`measurements_visualizer/`, `viewer.py`) | I wrote the skeleton and method names. AI split it into component files in my code style and wrote `viewer.py` |
-| **Docs and setup** | AI wrote this README, `requirements.txt`, `.gitignore`, `pytest.ini` and `.vscode/` |
-
-### Prompts used
-
-The main prompts, grouped by topic (shortened and with typos fixed):
-
-**Planning**
-- "I want to create a folder with a base TCP client for this repo. Only give me a suggestion, do not implement anything."
-- "Look at the repo again, there might be a different command to measure current. Should `BaseTcpClient` be an ABC?"
-- "How would you plan the measurements?" (with the assignment's sampling and analysis requirements pasted in) "Use Pydantic. Only give me the folders and suggestions, I will implement this."
-- "How would you manage the measurement settings in the config and manage the results? Which classes would you build for this?"
-- "Help me architect my code for measurements and results. I have the clients of the 3 types of meter so far."
-- "Look at the benchmark (another QA automation repo) and give some advice for here."
-
-**Clients**
-- "Please create `enums.py` for all ammeter types. Add also get ammeter type."
-- "Please create the 3 subclasses for me." / "It should be abstract."
-
-**Measurements and testing framework**
-- "Help me do the test framework for the measurement and organise it well. Where to put the unique run id?"
-- "Show me the code of the sampler." / "Only show the code here."
-- "How to write the testing framework for this?" (with the problem statement pasted in)
-- "Now how do I write the results?"
-- "Please use time utils instead of Python's `time`. Give simple method names."
-
-**Logger and config**
-- "Create a logger in utils, in classes. Call it TestLogger, it gets the test name. This is a logger for our test infra."
-- "Add the measurement results dir, the log dir and the debug level to the config YAML. Use fixtures for the path."
-
-**Simulator and unit tests**
-- "Add a new type called simulator for my ammeter and a very basic simulator for my testing. Allow me to set some errors inside, such as the ammeter not responding. The simulator should be very short."
-- "Add the simulator, run it and close it as a fixture in `tests/unit` to test the error handling."
-- "Remove the simulator from the main. It is used only for the unit test. Load the simulator config from `config.yaml`. Keep the conftest."
-
-**Viewer**
-- "Where to add the UI? Create the components of the screen: choose the meter, see the results history and look into one experiment."
-
-**Docs and repo**
-- "Add `requirements.txt` and a README that explains how to run." / "Add the viewer part to the README."
-- "Don't add comments in requirements, add tkinter if needed." / "Everything else is in the Python standard library, remove it and add pytest."
-- "Create `.gitignore`."
-- "Add a section for AI usage: what was implemented, models, prompts used."
