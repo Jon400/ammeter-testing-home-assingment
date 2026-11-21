@@ -94,35 +94,15 @@ the system package (for example `sudo apt install python3-tk`).
 
 All settings are in `config/config.yaml`:
 
-```yaml
-testing:
-  sampling:
-    measurements_count: 10         # number of samples per test
-    total_duration_seconds: 5.0    # maximum test time, the test stops early when it is reached
-    sampling_frequency_hz: 2.0     # samples per second
-
-ammeters:                          # where each emulator listens, remove an ammeter to skip it
-  greenlee:
-    host: localhost
-    port: 5001
-  entes:
-    host: localhost
-    port: 5002
-  circutor:
-    host: localhost
-    port: 5003
-
-simulator:                         # used only by the unit tests, not by main.py
-  host: localhost
-  port: 5004
-
-result_management:
-  results_dir: results             # measurement results, one JSON file per run
-
-logging:
-  log_dir: logs                    # test logs, one log file per test
-  log_level: DEBUG                 # DEBUG, INFO, WARNING or ERROR. DEBUG also logs every reading
-```
+| Key | Meaning |
+|-----|---------|
+| `testing.sampling.measurements_count` | Number of samples per test |
+| `testing.sampling.total_duration_seconds` | Maximum test time. The test stops early when it is reached |
+| `testing.sampling.sampling_frequency_hz` | Samples per second |
+| `ammeters.<name>.host` / `port` | Where each emulator listens. Remove an ammeter to skip it |
+| `result_management.results_dir` | Folder for the result JSON files |
+| `logging.log_dir` | Folder for the log files |
+| `logging.log_level` | `DEBUG`, `INFO`, `WARNING` or `ERROR`. `DEBUG` also logs every reading |
 
 ## Project structure
 
