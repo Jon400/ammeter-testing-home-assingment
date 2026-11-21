@@ -1,0 +1,13 @@
+2026-11-21 20:29:24,852 [INFO] test_greenlee: Test started: 10 samples at 2.0 Hz, at most 5.0 s
+2026-11-21 20:29:29,354 [DEBUG] test_greenlee: 0.010 s: 0.020922877929313383 A
+2026-11-21 20:29:29,355 [DEBUG] test_greenlee: 0.522 s: 0.12287728108216633 A
+2026-11-21 20:29:29,355 [DEBUG] test_greenlee: 1.002 s: 0.03517761346953798 A
+2026-11-21 20:29:29,355 [DEBUG] test_greenlee: 1.502 s: 0.24812601091664957 A
+2026-11-21 20:29:29,355 [DEBUG] test_greenlee: 2.002 s: 0.11556727019122401 A
+2026-11-21 20:29:29,355 [DEBUG] test_greenlee: 2.521 s: 0.06414954598082773 A
+2026-11-21 20:29:29,355 [DEBUG] test_greenlee: 3.002 s: 0.15651212872029338 A
+2026-11-21 20:29:29,357 [DEBUG] test_greenlee: 3.502 s: 3.037171520453924 A
+2026-11-21 20:29:29,357 [DEBUG] test_greenlee: 4.002 s: 0.38643291207847785 A
+2026-11-21 20:29:29,357 [DEBUG] test_greenlee: 4.502 s: 0.06093121464734811 A
+2026-11-21 20:29:29,357 [INFO] test_greenlee: Test finished: count=10 mean=0.4248 std=0.9246 failed=0
+2026-11-21 20:29:29,357 [INFO] test_greenlee: Result saved to results\5f2f81a9-60cb-4dd2-a7b3-a4236ff43c48.json

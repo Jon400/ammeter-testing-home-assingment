@@ -1,0 +1,74 @@
+{
+  "run_id": "5f2f81a9-60cb-4dd2-a7b3-a4236ff43c48",
+  "started_at": "2026-11-21T18:29:24.852663Z",
+  "ammeter_type": "greenlee",
+  "sample_config": {
+    "number_of_samples": 10,
+    "total_duration": 5.0,
+    "sample_rate": 2.0
+  },
+  "failed_samples": 0,
+  "measurement_data": {
+    "samples": [
+      {
+        "timestamp": 0.009576599999491009,
+        "current": 0.020922877929313383,
+        "unit": "A"
+      },
+      {
+        "timestamp": 0.5217087999999421,
+        "current": 0.12287728108216633,
+        "unit": "A"
+      },
+      {
+        "timestamp": 1.0016238999996858,
+        "current": 0.03517761346953798,
+        "unit": "A"
+      },
+      {
+        "timestamp": 1.5017029999999068,
+        "current": 0.24812601091664957,
+        "unit": "A"
+      },
+      {
+        "timestamp": 2.001815799999349,
+        "current": 0.11556727019122401,
+        "unit": "A"
+      },
+      {
+        "timestamp": 2.521069099999295,
+        "current": 0.06414954598082773,
+        "unit": "A"
+      },
+      {
+        "timestamp": 3.0016172999994524,
+        "current": 0.15651212872029338,
+        "unit": "A"
+      },
+      {
+        "timestamp": 3.5016862999991645,
+        "current": 3.037171520453924,
+        "unit": "A"
+      },
+      {
+        "timestamp": 4.002015799999754,
+        "current": 0.38643291207847785,
+        "unit": "A"
+      },
+      {
+        "timestamp": 4.501504299999397,
+        "current": 0.06093121464734811,
+        "unit": "A"
+      }
+    ],
+    "stats": {
+      "count": 10,
+      "mean_current": 0.4247868375469762,
+      "median_current": 0.11922227563669517,
+      "std_dev_current": 0.9245613289564835,
+      "min_current": 0.020922877929313383,
+      "max_current": 3.037171520453924,
+      "unit": "A"
+    }
+  }
+}

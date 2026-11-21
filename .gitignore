@@ -7,8 +7,8 @@ __pycache__/
 venv/
 
 # Test output (created on every run)
-logs/
-results/
+/logs/
+/results/
 
 # pytest
 .pytest_cache/
