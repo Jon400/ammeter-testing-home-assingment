@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+venv/
+
+# Test output (created on every run)
+logs/
+results/
+
+# pytest
+.pytest_cache/
+
+# IDE
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

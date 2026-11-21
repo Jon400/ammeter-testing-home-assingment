@@ -1,0 +1,27 @@
+testing:
+  sampling:
+    measurements_count: 10
+    total_duration_seconds: 5.0
+    sampling_frequency_hz: 2.0
+
+ammeters:
+  greenlee:
+    host: localhost
+    port: 5001
+  entes:
+    host: localhost
+    port: 5002
+  circutor:
+    host: localhost
+    port: 5003
+
+simulator:                   # used only by the unit tests, not by main.py
+  host: localhost
+  port: 5004
+
+result_management:
+  results_dir: results       # measurement results, one JSON file per run
+
+logging:
+  log_dir: logs              # test logs, one log file per test
+  log_level: DEBUG           # DEBUG, INFO, WARNING or ERROR. DEBUG also logs every reading
